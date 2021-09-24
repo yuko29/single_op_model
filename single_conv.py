@@ -22,7 +22,7 @@ class Model(nn.Module):
 
 # Use this an input trace to serialize the model
 input_shape = (1, 32, 32)
-model_onnx_path = "single_conv2d.onnx"
+model_onnx_path = "./Conv/single_conv2d.onnx"
 model = Model()
 model.train(False)
 

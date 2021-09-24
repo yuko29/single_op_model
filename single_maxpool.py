@@ -21,7 +21,7 @@ class Model(nn.Module): # Model 繼承 nn.Module
 
 # Use this an input trace to serialize the model
 input_shape = (1, 32, 32)
-model_onnx_path = "single_maxpool.onnx"
+model_onnx_path = "./MaxPool/single_maxpool.onnx"
 model = Model()
 #model.train(False)
 
