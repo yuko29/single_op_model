@@ -33,5 +33,6 @@ dummy_input = Variable(torch.randn(1, *input_shape))
 output = torch_onnx.export(model, 
                           dummy_input, 
                           model_onnx_path, 
-                          verbose=False, input_names=input_names, output_names=output_names)
+                          verbose=False, input_names=input_names, output_names=output_names,
+                          keep_initializers_as_inputs=True)
 print("Export of torch_model.onnx complete!")
