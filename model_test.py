@@ -40,10 +40,10 @@ outputs = ort_session.run(
 # print(outputs[0])
 
 # convert np array to TensorProto
-intput_tensor = numpy_helper.from_array(np_array)
+input_tensor = numpy_helper.from_array(np_array)
 # save TensorProto
 with open(config['set']['save_input'], 'wb') as f:
-    f.write(intput_tensor.SerializeToString())
+    f.write(input_tensor.SerializeToString())
 
 output_tensor = np.array(outputs)
 output_tensor = numpy_helper.from_array(output_tensor)
