@@ -1,0 +1,413 @@
+[name: "conv1_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 96
+      }
+      dim {
+        dim_value: 54
+      }
+      dim {
+        dim_value: 54
+      }
+    }
+  }
+}
+, name: "conv1_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 96
+      }
+      dim {
+        dim_value: 54
+      }
+      dim {
+        dim_value: 54
+      }
+    }
+  }
+}
+, name: "norm1_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 96
+      }
+      dim {
+        dim_value: 54
+      }
+      dim {
+        dim_value: 54
+      }
+    }
+  }
+}
+, name: "pool1_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 96
+      }
+      dim {
+        dim_value: 26
+      }
+      dim {
+        dim_value: 26
+      }
+    }
+  }
+}
+, name: "conv2_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 26
+      }
+      dim {
+        dim_value: 26
+      }
+    }
+  }
+}
+, name: "conv2_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 26
+      }
+      dim {
+        dim_value: 26
+      }
+    }
+  }
+}
+, name: "norm2_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 26
+      }
+      dim {
+        dim_value: 26
+      }
+    }
+  }
+}
+, name: "pool2_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv3_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv3_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv4_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv4_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv5_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "conv5_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 12
+      }
+      dim {
+        dim_value: 12
+      }
+    }
+  }
+}
+, name: "pool5_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 6
+      }
+      dim {
+        dim_value: 6
+      }
+    }
+  }
+}
+, name: "OC2_DUMMY_0"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 9216
+      }
+    }
+  }
+}
+, name: "fc6_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc6_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc6_3"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc7_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc7_2"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc7_3"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 4096
+      }
+    }
+  }
+}
+, name: "fc8_1"
+type {
+  tensor_type {
+    elem_type: 1
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1000
+      }
+    }
+  }
+}
+]
