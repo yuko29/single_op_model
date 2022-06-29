@@ -2,7 +2,7 @@ import onnx
 
 
 # Load the ONNX model
-model = onnx.load("Alexnet/model.onnx")
+model = onnx.load("resnet18-v1-7/stage4_plus1.onnx")
 
 inferred_model = onnx.shape_inference.infer_shapes(model)
 

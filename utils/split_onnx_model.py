@@ -1,31 +1,46 @@
+from urllib.parse import non_hierarchical
 import onnx
+from onnx.numpy_helper import from_array, to_array
+from onnx import helper, TensorProto
+from torch import Tensor
 
-# the following code is used to split resnet18-v1-7.onnx
+# Ref: https://blog.csdn.net/xxradon/article/details/104715524
 
-def transform(model):
-    oldnodes = [n for n in model.graph.node]
-    # newnodes = oldnodes[0:10] # 1 block
-    newnodes = oldnodes[0:17] # 2 blocks
-    # newnodes = oldnodes[0:26] # 3 blocks
-    # newnodes = oldnodes[0:33] # 4 blocks
-    # newnodes = oldnodes[0:57] # 5 blocks
-    # newnodes = oldnodes[0:64] # 6 blocks
-    # newnodes = oldnodes[0:73] # 7 blocks
-    # newnodes = oldnodes[0:80] # 8 blocks
-    del model.graph.node[:] # clear old nodes
-    model.graph.node.extend(newnodes)
+"""the following code is used to split resnet18-v1-7.onnx"""
 
-def apply(transform, infile, outfile):
-    model = onnx.load(infile)
-    transform(model)
-    onnx.save(model, outfile)
+"""Load model"""
 
 input_path = 'resnet18-v1-7/resnet18-v1-7.onnx'
-output_path = 'resnet18-v1-7/one_block.onnx'
-# input_names = ['data', 'resnetv15_conv0_weight', 'resnetv15_batchnorm0_gamma', 'resnetv15_batchnorm0_beta', 'resnetv15_batchnorm0_running_mean', 'resnetv15_batchnorm0_running_var', 'resnetv15_stage1_conv0_weight', 'resnetv15_stage1_batchnorm0_gamma']
-# output_names = ['resnetv15_dense0_fwd', 'resnetv15_conv0_fwd']
+output_path = 'resnet18-v1-7/stage4_plus1.onnx'
 
+model = onnx.load(input_path)
 
-apply(transform=transform, infile=input_path, outfile=output_path)
+"""Extract subgraph"""
 
-# onnx.utils.extract_model(input_path, output_path, input_names, output_names)
+oldnodes = [n for n in model.graph.node]
+# newnodes = oldnodes[0:10] # stage1_plus0
+# newnodes = oldnodes[0:17] # stage1_plus1
+# newnodes = oldnodes[0:26] # stage2_plus0
+# newnodes = oldnodes[0:33] # stage2_plus1
+# newnodes = oldnodes[0:42] # stage3_plus0
+# newnodes = oldnodes[0:49] # stage3_plus1
+# newnodes = oldnodes[0:58] # stage4_plus0
+newnodes = oldnodes[0:65] # stage4_plus1
+# newnodes.append(oldnodes[69])
+del model.graph.node[:] # clear old nodes
+model.graph.node.extend(newnodes)
+
+"""Add new output node"""
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage1__plus0', TensorProto.FLOAT, [1, 64, 56, 56]) # stage1_plus0
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage1__plus1', TensorProto.FLOAT, [1, 64, 56, 56]) # stage1_plus1
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage2__plus0', TensorProto.FLOAT, [1, 128, 28, 28]) # stage2_plus0
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage2__plus1', TensorProto.FLOAT, [1, 128, 28, 28]) # stage2_plus1
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage3__plus0', TensorProto.FLOAT, [1, 256, 14, 14]) # stage3_plus0
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage3__plus1', TensorProto.FLOAT, [1, 256, 14, 14]) # stage3_plus1
+# new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage4__plus0', TensorProto.FLOAT, [1, 512, 7, 7]) # stage4_plus0
+new_output_node = onnx.helper.make_tensor_value_info('resnetv15_stage4__plus1', TensorProto.FLOAT, [1, 512, 7, 7]) # stage4_plus1
+del model.graph.output[:]
+model.graph.output.extend([new_output_node])
+
+"""Save subgraph"""
+onnx.save(model, output_path)
