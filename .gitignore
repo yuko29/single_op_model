@@ -1,1 +1,5 @@
 token
+*.npz
+*.tar.gz
+*.png
+Alexnet/model.onnx
